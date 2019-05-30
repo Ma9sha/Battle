@@ -1,4 +1,5 @@
 require 'sinatra/base'
+require 'player'
 
 class Battle < Sinatra::Application
 enable :sessions
@@ -11,14 +12,14 @@ get '/fill_form' do
 end
 
 post '/names' do
-  session[:names1] = params[:name1]
-  session[:names2] = params[:name2]
+  $player1 = Player.new(params[:name1])
+  $player2 = Player.new(params[:name2])
   redirect to('/play')
 end
 
 get '/play' do
-  @names1 = session[:names1]
-  @names2 = session[:names2]
+  @names1 = $player1.name
+  @names2 = $player2.name
   erb(:play)
 
 end
