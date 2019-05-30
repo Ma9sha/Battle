@@ -20,5 +20,10 @@ get '/play' do
   @names1 = session[:names1]
   @names2 = session[:names2]
   erb(:play)
+
+end
+
+get '/message' do
+  erb(:mesg)
 end
 end
