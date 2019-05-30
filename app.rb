@@ -1,5 +1,5 @@
 require 'sinatra/base'
-require 'player'
+require './lib/player'
 
 class Battle < Sinatra::Application
 enable :sessions
@@ -25,6 +25,7 @@ get '/play' do
 end
 
 get '/message' do
+  @hitpoints = $player2.calc_hit_points
   erb(:mesg)
 end
 end
